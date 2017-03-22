@@ -1,0 +1,38 @@
+<%= form_for @product, url: admin_product_path(params[:id]) do |f| %>
+<% if @product.errors.any? %>
+<div id="error_explanation">
+	<h2>
+		<%= pluralize(@product.errors.count, "error") %> prohibited
+		this article from being saved:
+	</h2>
+	<ul>
+		<% @product.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+<div class="form-group">
+	<h4>Category legend: 1 for Skincare, 2 for Makeup, 3 for Hair, 4 for Bath & Body</h4>
+	<%= f.label :category_id %>
+	<%= f.number_field :category_id, class: "form-control" %>
+</div>
+<div class="form-group">
+	<%= f.label :name %>
+	<%= f.text_field :product_name, class: "form-control" %>
+</div>
+<div class="form-group">
+	<%= f.label :description %>
+	<%= f.text_area :description, class: "form-control" %>
+</div>
+<div class="form-group">
+	<%= f.label :price %>
+	<%= f.number_field :price, value: number_with_precision(f.object.price, precision: 2), class: "form-control" %>
+</div>
+
+<div class="form-group">
+	<%= f.submit :class => "btn btn-default"%>
+</div>
+<% end %>
+
+<%= link_to 'Back', admin_categories_path, class: "btn btn-default" %>

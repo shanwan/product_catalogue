@@ -1,0 +1,30 @@
+<div class="container">
+  <h3> Select a category to create new product </h3>
+  <%= link_to 'Create SkinCare Product', new_admin_category_product_path(1), class: "btn btn-default" %>
+  <%= link_to 'Create Makeup Product', new_admin_category_product_path(2), class: "btn btn-default" %>
+  <%= link_to 'Create Hair Product', new_admin_category_product_path(3), class: "btn btn-default" %>
+  <%= link_to 'Create Bath & Body Product', new_admin_category_product_path(3), class: "btn btn-default" %>
+</div>
+<br>
+<div class="container">
+  <%= form_tag(categories_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :contains, params[:contains], placeholder: "Search products" %>
+  <%= submit_tag "Search", class: "btn btn-default"%>
+  <% end %>
+  <br>
+  <% @products.each do |product| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h4><%= product.product_name %></h4>
+      <p> <%= product.description %> </p>
+    </div>
+    <div class="panel-footer">
+      <%= number_to_currency product.price %>
+      <%= link_to 'Show', admin_product_path(product), class: "btn btn-default" %>
+      <%= link_to 'Edit', edit_admin_product_path(product), class: "btn btn-info" %>
+      <%= link_to 'Delete', admin_product_path(product), class: "btn btn-danger", method: :delete,
+      data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+  <% end %>
+</div>

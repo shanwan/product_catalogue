@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ProductCatalogue</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header class="clearfix">
+    <div class="container">
+      <div class="header-left">
+        <h1>Sephora - Take Home Exercise</h1>
+      </div>
+      <div class="header-right">
+        <nav>
+          <%= link_to "Home", categories_path %>
+          <%= link_to "Skincare", category_path('1') %>
+          <%= link_to "Makeup", category_path('2') %>
+          <%= link_to "Hair", category_path('3') %>
+          <%= link_to "Bath & Body", category_path('4') %>
+        </nav>
+        <nav>
+          <%= link_to "AdminHome", admin_categories_path %>
+          <%= link_to "AdminSkincare", admin_category_path('1') %>
+          <%= link_to "AdminMakeup", admin_category_path('2') %>
+          <%= link_to "AdminHair", admin_category_path('3') %>
+          <%= link_to "AdminBath & Body", admin_category_path('4') %>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <%= yield %>
+
+</body>
+</html>

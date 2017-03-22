@@ -1,0 +1,17 @@
+<br> 
+<div class="container">
+  <%= form_tag(categories_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :contains, params[:contains], placeholder: "Search products" %>
+  <%= submit_tag "Search", class: "btn btn-default" %>
+  <% end %>
+  <br>
+  <% @category_products.each do |product| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h4><%= product.product_name %></h4>
+      <p> <%= product.description %> </p>
+    </div>
+    <div class="panel-footer"><%= number_to_currency product.price %></div>
+  </div>
+  <% end %>
+</div>
